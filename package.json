@@ -1,8 +1,8 @@
 {
-  "name": "nest-graph-ql",
+  "name": "tagline-infotech",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Sample code",
+  "author": "Tagline",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

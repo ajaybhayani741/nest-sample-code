@@ -1,45 +1,32 @@
-import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 // import { Document } from "mongoose";
 
 @ObjectType()
 export class UsersModelGQL {
-    @Field(() => ID)
-    _id: String
+  @Field(() => ID)
+  _id: string;
 
-    @Field(() => String)
-    name?: String
+  @Field(() => String)
+  name?: string;
 
-    @Field(() => String)
-    email?: String
+  @Field(() => String)
+  email?: string;
 
-    @Field(() => Int)
-    age?: Number
+  @Field(() => Int)
+  age?: number;
 
-    @Field(() => String)
-    password?: String
+  @Field(() => String)
+  password?: string;
 
-    @Field(() => String)
-    role?: String
+  @Field(() => String)
+  role?: string;
 
-    @Field(() => String)
-    technology?: String
+  @Field(() => String)
+  technology?: string;
 
-    @Field(() => String, { nullable: true })
-    token?: String
+  @Field(() => String, { nullable: true })
+  token?: string;
 
-    @Field(() => Boolean)
-    status: Boolean
+  @Field(() => Boolean)
+  status: boolean;
 }
-
-// @ObjectType()
-// export class FileUploadData {
-//     @Field(() => String, { nullable: true })
-//     filename?: String
-
-//     @Field(() => String, { nullable: true })
-//     mimetype?: String
-
-//     @Field(() => String, { nullable: true })
-//     encoding?: String
-
-// }

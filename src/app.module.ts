@@ -5,19 +5,19 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Upload } from './users/scalar/user.scalar';
-import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     UsersModule,
-    MongooseModule.forRoot('mongodb://localhost/graphql'),
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.DB_URL),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      installSubscriptionHandlers:true,
+      installSubscriptionHandlers: true,
       sortSchema: true,
-      playground: true,
       debug: false,
       context: ({ req }) => {
         return {
@@ -25,9 +25,9 @@ import { AuthModule } from './auth/auth.module';
         };
       },
     }),
-    AuthModule
+    AuthModule,
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService,Upload],
+  controllers: [AppController],
+  providers: [AppService, Upload],
 })
 export class AppModule {}

@@ -8,19 +8,21 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports:[
-    MongooseModule.forFeature([{ name: 'users', schema: usersSchema, collection: 'users' }]),
+  imports: [
+    MongooseModule.forFeature([
+      { name: 'users', schema: usersSchema, collection: 'users' },
+    ]),
     PassportModule.register({
       defaultStrategy: 'jwt',
       property: 'user',
       session: false,
     }),
     JwtModule.register({
-      secret: 'secretKey',
-      signOptions: { expiresIn: '3600s' }
-    })
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '3600s' },
+    }),
   ],
   providers: [AuthService, AuthResolver, JwtStrategy],
-  exports: [AuthService, JwtModule]
+  exports: [AuthService, JwtModule],
 })
 export class AuthModule {}

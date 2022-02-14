@@ -5,21 +5,20 @@ import { AuthService } from './auth.service';
 import { PubSub } from 'graphql-subscriptions';
 const pubSub = new PubSub();
 
-@Resolver(()=> UsersModelGQL)
+@Resolver(() => UsersModelGQL)
 export class AuthResolver {
-    constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-    @Mutation(() => UsersModelGQL)
-    async signUp(@Args('payload') payload: UserInput) {
-        const userData = await this.authService.signUp(payload);
-        // await pubSub.publish('userAdded', { userAdded: userData });
-        return userData;
-    }
+  @Mutation(() => UsersModelGQL)
+  async signUp(@Args('payload') payload: UserInput) {
+    const userData = await this.authService.signUp(payload);
+    await pubSub.publish('userAdded', { userAdded: userData });
+    return userData;
+  }
 
-    @Mutation(() => UsersModelGQL)
-    async loginUser(@Args('payload') payload: LoginInput) {
-        const userData = await this.authService.loginUser(payload);
-        // await pubSub.publish('userAdded', { userAdded: userData });
-        return userData;
-    }
+  @Mutation(() => UsersModelGQL)
+  async loginUser(@Args('payload') payload: LoginInput) {
+    const userData = await this.authService.loginUser(payload);
+    return userData;
+  }
 }

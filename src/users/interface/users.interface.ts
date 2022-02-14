@@ -1,12 +1,12 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
-export interface Users extends Document{
-    name:String,
-    age:Number,
-    email:String,
-    password:String,
-    role:String,
-    technology:String,
-    token:String,
-    status:String
+export interface Users extends Document {
+  name: string;
+  age: number;
+  email: string;
+  password: string;
+  role: string;
+  technology: string;
+  token: string;
+  status: string;
 }
