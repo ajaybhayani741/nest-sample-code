@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  addUser(payload: UserInput!): UsersModelGQL!
+  deleteUser(_id: String!): UsersModelGQL!
+  editUser(_id: String!, payload: UserInput!): UsersModelGQL!
+  fileUpload(file: Upload!): Boolean!
+  loginUser(payload: LoginInput!): UsersModelGQL!
+  signUp(payload: UserInput!): UsersModelGQL!
+}
+
+type Query {
+  getUserById(_id: String!): UsersModelGQL!
+  getUsers: [UsersModelGQL!]!
+}
+
+type Subscription {
+  userAdded: UsersModelGQL!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input UserInput {
+  age: Int!
+  email: String!
+  name: String!
+  password: String!
+  role: String!
+  technology: String!
+}
+
+type UsersModelGQL {
+  _id: ID!
+  age: Int!
+  email: String!
+  name: String!
+  password: String!
+  role: String!
+  status: Boolean!
+  technology: String!
+  token: String
+}
